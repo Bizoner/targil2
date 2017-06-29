@@ -1,0 +1,48 @@
+<app-menu (changedMenu)="menuChange($event)"></app-menu>
+<br>
+<div *ngIf="selected == 'getById'">
+  <form (ngSubmit)="onSubmitId(i)" #i="ngForm">
+    <br>
+    <label for="userId">User ID: </label>
+    <input id="userId" type="text" name="id" ngModel>
+    <p>ex. 5919b065734d1d1cd0be67ab</p>
+    <button type="submit" class="btn btn-primary">SUBMIT</button>
+  </form>
+</div>
+<div *ngIf="selected == 'getAlerts'">
+  <form (ngSubmit)="onSubmitAlerts(f)" #f="ngForm">
+    <label for="activeDevices">Number of Active Devices:</label>
+    <input id="activeDevices" type="number" name="activeDevices" ngModel>
+    <label>Login Alerts:</label>
+    <label><input type="radio" name="loginAlerts" [value]="true" ngModel="loginAlerts">TRUE</label>
+    <label><input type="radio" name="loginAlerts" [value]="false" ngModel="loginAlerts">FALSE</label>
+    <button type="submit" class="btn btn-primary">SUBMIT</button>
+  </form>
+</div>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone</th>
+      <th>Login Alerts</th>
+      <th>Recognized Devices</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList">
+      <td>{{user._id}}</td>
+      <td>{{user.user_name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.settings.phone_to_aproove_password_change}}</td>
+      <td>{{user.settings.login_alerts}}</td>
+      <td>{{user.settings.recognized_devices}}</td>
+    </tr>
+  </tbody>
+</table>
