@@ -6,9 +6,15 @@ import {SecurityRouteService} from 'services/security-route.service';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { DataWindowComponent } from './data-window/data-window.component';
+import { Routes,RouterModule } from '@angular/router';
 
+const appRoutes: Routes = [
+  {path: '', redirectTo: '/main', pathMatch:'full'},
+  {path: 'main', component: AppComponent}
+];
 
 @NgModule({
+  exports: [RouterModule],
   declarations: [
     AppComponent,
     MenuComponent,
@@ -18,7 +24,8 @@ import { DataWindowComponent } from './data-window/data-window.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [SecurityRouteService],
   bootstrap: [AppComponent]
