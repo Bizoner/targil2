@@ -16,6 +16,7 @@ export class DataWindowComponent implements OnInit {
   selected: String;
 
   constructor(private SecurityRouteService: SecurityRouteService) {
+    this.getAllUsers();
   }
 
   menuChange(select: string) {
